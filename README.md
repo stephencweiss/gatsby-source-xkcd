@@ -44,8 +44,9 @@ You can query nodes created from XKCD like the following
 ```graphql
 {
   allXkcd {
-    edges {
-      node {
+    nodes {
+      id
+      xkcd {
         alt
         day
         img
@@ -62,5 +63,4 @@ You can query nodes created from XKCD like the following
     }
   }
 }
-
 ```

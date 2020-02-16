@@ -12,24 +12,52 @@ const apiBase = "https://xkcd.com/";
  * TODO - Add better documentation on shape and allowed queries
  */
 async function fetchNodesFromQueries(queries) {
+
+  let results;
   if (!queries) {
     // zeroConfig
-    console.log(`zeroConfig`);
-    return axios({ url: `${apiBase}info.0.json` })
+    results = await axios({ url: `${apiBase}info.0.json` })
       .then(res => res.data)
       .finally(() => console.log(`xkcd finished`));
-  }
-  if (queries && !Array.isArray(queries)) {
+  } else if (queries && !Array.isArray(queries)) {
     throw new Error(
       `Expect queries to be an array. See README for handled queries`
     );
-  }
-  if (queries.length === 0) {
+  } else if (queries.length === 0) {
     throw new Error(
       `If queries present, expect at least one query. See README for handled queries`
     );
+  } else {
+
+    results = await Promise.all(
+      queries.map(async query => {
+        // Specify Comic Id(s)
+        if (query.comicIds) {
+          return await Promise.all(
+            query.comicIds.map(
+              async comicId =>
+                await axios({ url: `${apiBase}${comicId}/info.0.json` }).then(
+                  res => res.data
+                )
+            )
+          );
+        }
+
+        // Specify Latest
+        if (query.latest) {
+          return await axios({ url: `${apiBase}info.0.json` }).then(
+            res => res.data
+          );
+        }
+      })
+    );
   }
-  await console.log(`awaited! --> `, JSON.stringify(queries, null, 4));
+  /**
+   * TODO: Figure out a _better_ solution to this
+   * By flattening and then passing into an object, we're able to have multiple results, but it creates an extra level on the node creation that seems unnecessary
+   */
+  const flattenedResults = [results].flat(Infinity)
+  return {xkcd: flattenedResults};
 }
 
 exports.fetchNodesFromQueries = fetchNodesFromQueries;
