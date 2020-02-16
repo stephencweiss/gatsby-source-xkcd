@@ -99,3 +99,28 @@ query MyQuery {
   }
 }
 ```
+
+## Questions? Suggestions? Contributions?
+
+Yes please! Ask away. Create an issue if you find a bug. Open a PR if you think this can be improved!
+
+I'll be adding some templates soon to make this simple!
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/stephencweiss"><img src="https://avatars3.githubusercontent.com/u/39878535?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Stephen Weiss</b></sub></a><br /><a href="https://github.com/formatjs/formatjs/commits?author=pyrocat101" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+This project follows the [all-contributors](https://allcontributors.org/) specification. Contributions of any kind are welcome!
