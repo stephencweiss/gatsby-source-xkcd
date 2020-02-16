@@ -1,63 +1,53 @@
-const axios = require("axios");
+const { boundedHash } = require("./hashFn");
+const { fetchComicsByIds, fetchLatest } = require("./fetchComics");
 
-/**
- * Pattern for searching:
- * const apiUrl = `https://xkcd.com/${comicId ? `${comicId}/` : ``}info.0.json`
- */
-const apiBase = "https://xkcd.com/";
-
+const NOW = new Date();
 /**
  *
  * @param {*} queries - an array of queries, can be null
- * TODO - Add better documentation on shape and allowed queries
  */
 async function fetchNodesFromQueries(queries) {
+  // zero-config
+  if (!queries) return { latest: await fetchLatest() };
 
-  let results;
-  if (!queries) {
-    // zeroConfig
-    results = await axios({ url: `${apiBase}info.0.json` })
-      .then(res => res.data)
-      .finally(() => console.log(`xkcd finished`));
-  } else if (queries && !Array.isArray(queries)) {
+  // malformed queries
+  if (queries && !Array.isArray(queries)) {
     throw new Error(
-      `Expect queries to be an array. See README for handled queries`
+      `If query option is configured, it is expected to be an array of queries.\nSee plugin README for more details`
     );
   } else if (queries.length === 0) {
     throw new Error(
-      `If queries present, expect at least one query. See README for handled queries`
-    );
-  } else {
-
-    results = await Promise.all(
-      queries.map(async query => {
-        // Specify Comic Id(s)
-        if (query.comicIds) {
-          return await Promise.all(
-            query.comicIds.map(
-              async comicId =>
-                await axios({ url: `${apiBase}${comicId}/info.0.json` }).then(
-                  res => res.data
-                )
-            )
-          );
-        }
-
-        // Specify Latest
-        if (query.latest) {
-          return await axios({ url: `${apiBase}info.0.json` }).then(
-            res => res.data
-          );
-        }
-      })
+      `If query option is configured, at least one query should be present.\nSee plugin README for more details`
     );
   }
-  /**
-   * TODO: Figure out a _better_ solution to this
-   * By flattening and then passing into an object, we're able to have multiple results, but it creates an extra level on the node creation that seems unnecessary
-   */
-  const flattenedResults = [results].flat(Infinity)
-  return {xkcd: flattenedResults};
+
+  // handle queries
+  let results = {};
+  await Promise.all(
+    queries.map(async query => {
+      if (query.comicIds) {
+        return (results.comicIds = await fetchComicsByIds(query.comicIds));
+      }
+
+      if (query.comicQuantity) {
+        const comicIds = [];
+        const hashUpperBound = fetchLatest().num; // avoid searching for a comic id that does not exist by creating an upper bound
+        for (let i = 0; i < query.comicQuantity; i += 1) {
+          const hashStr = i + NOW;
+          let comicId = boundedHash(hashStr, hashUpperBound, 1);
+          comicIds.push(comicId);
+        }
+        return (results.comicQuantity = await fetchComicsByIds(comicIds));
+      }
+
+      if (query.latest) {
+        const latest = await fetchLatest();
+        return (results.latest = latest);
+      }
+    })
+  );
+
+  return results;
 }
 
 exports.fetchNodesFromQueries = fetchNodesFromQueries;
