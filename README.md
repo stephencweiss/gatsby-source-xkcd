@@ -100,6 +100,14 @@ query MyQuery {
 }
 ```
 
+## Examples
+
+We have examples full Gatsby app examples for both the zero config approach and using basic queries.
+
+You can find these in the `example` directory:
+1. [Zero-Config](./example/zero-config/README.md)
+1. [Qasic Query](./example/basic-query/README.md)
+
 ## Questions? Suggestions? Contributions?
 
 Yes please! Ask away. Create an issue if you find a bug. Open a PR if you think this can be improved!
