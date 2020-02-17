@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-xkcd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gatsby source plugin for building websites with XKCD as a data source",
   "main": "index.js",
   "scripts": {
