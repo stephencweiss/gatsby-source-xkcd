@@ -102,7 +102,7 @@ query MyQuery {
 
 ## Examples
 
-We have examples full Gatsby app examples for both the zero config approach and using basic queries.
+We have full Gatsby app examples for both the zero config approach and using basic queries.
 
 You can find these in the `example` directory:
 1. [Zero-Config](./example/zero-config/README.md)
