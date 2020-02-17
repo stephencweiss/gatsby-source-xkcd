@@ -1,4 +1,3 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
@@ -10,13 +9,17 @@
 
 This example is based on [Gatsby's hello-world starter](https://github.com/gatsbyjs/gatsby-starter-hello-world) which ships with the main Gatsby configuration files but is designed to make it straightforward to see how to use the `gatsby-source-xkcd` plugin!
 
-## 🚀 Quick start
+## 🚀 Getting Started
 
-Navigate into the `example` folder (that's where this README is located) and start it up.
+1. Navigate into the `example` folder (that's where this README is located)
+2. Make sure the dependencies are installed (`npm install` or `yarn install`)
+3. Start it up
 
     ```shell
-    $ gatsby develop
+    $ npm start
     ```
+    
+At this point you should have a Gatsby site running locally at `localhost:8000`!
 
 ## What's different from the Gatsby Starter?
 
