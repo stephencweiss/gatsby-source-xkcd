@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## 0.0.4
-**Note:** Add an example file
+**Note:** Add an examples with zero-config and basic query examples.
 
 ## 0.0.3
 **Note:** Remove Typescript for now. Move entire plugin into `src`. Allow Babel to build and keep everything together.
