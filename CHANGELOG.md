@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0
+**Note:** Breaking change on API: Removed `query` syntax.
+
 ## 0.0.4
 **Note:** Add an examples with zero-config and basic query examples.
 

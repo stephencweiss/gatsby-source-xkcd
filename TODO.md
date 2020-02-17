@@ -1,6 +1,6 @@
-- [ ] Simplify API to only have options (remove queries)
-- [ ] Remove query language from `fetchNodesFromQueries`
-- [ ] make sure you can still pass multiple options
-- [ ] verify the shape of the data returned
-- [ ] verify examples still work
-- [ ] Update README(s)
+- [x] Simplify API to only have options (remove queries)
+- [x] Remove query language from `fetchNodesFromQueries`
+- [x] make sure you can still pass multiple options
+- [x] verify the shape of the data returned
+- [x] verify examples still work
+- [x] Update README(s)
