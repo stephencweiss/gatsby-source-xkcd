@@ -12,25 +12,42 @@ For more information on the XKCD API, see: https://xkcd.com/json.html
 
 ## How to use
 
-```javascript
-// In your gatsby-config.js
+Setting up the `gatsby-source-xkcd` plugin requires only a minor change to your `gatsb-config.js` file.
+
+You have two options:
+
+1. Zero Config
+2. With Options
+
+### The Zero-Config Approach
+
+The zero-config will fetch the most recent xkcd comic.
+
+```javascript title="gatsby-config.js"
 module.exports = {
   plugins: [
-    // "zero-config" will fetch the most recent xkcd comic
-    `gatsby-source-xkcd`,
+    `gatsby-source-xkcd`
+    //...
+  ]
+};
+```
 
-    // OR -- with configuration
+### With Options
+
+Configuring the plugin with options can be done with any combination and order of the following options in your `gatsby-config.js`:
+
+```javascript title="gatsby-config.js"
+module.exports = {
+  plugins: [
     {
       resolve: `gatsby-source-xkcd`,
       options: {
-        queries: [
-          // retrieve comic(s) by specified id
-          { comicIds: [12, 100] },
-          // retrieve multiple comics - randomly selected at build time
-          { comicQuantity: 5 },
-          // retrieve the latest comic
-          { latest: true }
-        ]
+        // retrieve comic(s) by specified id
+        comicIds: [12, 100],
+        // retrieve multiple comics - randomly selected at build time
+        comicQuantity: 5,
+        // retrieve the latest comic
+        latest: true
       }
     }
   ]
@@ -39,11 +56,13 @@ module.exports = {
 
 ## How to query
 
-The nodes created by this source plugin depend on the configuration provided in `gatsby-node`.
+Once added to the `gatsby-config.js` file, XKCD comics will be available via GraphQL.
+
+The nodes created by this source plugin depend on the configuration provided in `gatsby-config.js`.
 
 By default, this plugin will return the `latest` node.
 
-If you provide specific configuration, you will have access to:
+If you provide specific options, you will have access to:
 
 1. `latest`
 2. `comicIds`
@@ -52,10 +71,9 @@ If you provide specific configuration, you will have access to:
 Each node is the same shape, though `comicIds` and `comicQuantity` are arrays of objects while `latest` is always just one comic and therefore just an object.
 
 ```graphql
-query MyQuery {
+query QueryXkcd {
   allXkcd {
     nodes {
-      id
       comicIds {
         month
         num
@@ -105,6 +123,7 @@ query MyQuery {
 We have full Gatsby app examples for both the zero config approach and using basic queries.
 
 You can find these in the `example` directory:
+
 1. [Zero-Config](./example/zero-config/README.md)
 1. [Basic Query](./example/basic-query/README.md)
 
@@ -112,7 +131,24 @@ You can find these in the `example` directory:
 
 Yes please! Ask away. Create an issue if you find a bug. Open a PR if you think this can be improved!
 
-I'll be adding some templates soon to make this simple!
+We'll be adding some templates soon to make this simple!
+
+In the mean time, if you'd like to pull down this repository to play around please do!
+
+If you want to see how your changes work with one of example apps, modify the `gatsby-config.js` in there to use a [local plugin](https://www.gatsbyjs.org/docs/creating-a-local-plugin/#using-requireresolve-and-a-filepath)
+
+For example:
+
+```diff title="./example/basic-query/gatsby-config.js
+module.exports = {
+  plugins: [
+    {
++        resolve: require.resolve(`../../../gatsby-source-xkcd`),
+-        resolve: `gatsby-source-xkcd`,
+    },
+  ],
+}
+```
 
 ## Contributors ✨
 
@@ -131,4 +167,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 This project follows the [all-contributors](https://allcontributors.org/) specification. Contributions of any kind are welcome!

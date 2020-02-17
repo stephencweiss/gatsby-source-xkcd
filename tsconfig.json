@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-      "target": "es5",
+      "types": ["node"],
+      "target": "ESNext",
       "module": "commonjs",
       "declaration": true,
       "outDir": "./dist",
@@ -17,7 +18,7 @@
       "esModuleInterop": true
     },
     "include": [
-      "./src/**/*"
+      "./src/**/*", "gatsby-node.js"
     ],
     "exclude": []
   }

@@ -1,10 +1,14 @@
-const axios = require("axios");
+import axios from "axios";
+import {Comic} from './fetchNodes'
+
 const apiBase = "https://xkcd.com/";
-async function fetchLatest() {
+
+
+export async function fetchLatest():Promise<Comic> {
   return await axios({ url: `${apiBase}info.0.json` }).then(res => res.data);
 }
 
-async function fetchComicsByIds(comicIds = []) {
+export async function fetchComicsByIds(comicIds:Array<number> = []): Promise<Array<Comic>> {
   return await Promise.all(
     comicIds.map(async comicId => {
       if (!comicId) return;
@@ -14,6 +18,3 @@ async function fetchComicsByIds(comicIds = []) {
     })
   );
 }
-
-exports.fetchLatest = fetchLatest;
-exports.fetchComicsByIds = fetchComicsByIds;
