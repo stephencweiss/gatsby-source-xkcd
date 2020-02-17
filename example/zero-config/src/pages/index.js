@@ -12,7 +12,7 @@ export default props => {
   )
 }
 
-export const pageQuer = graphql`
+export const pageQuery = graphql`
   query getLatest {
     allXkcd {
       nodes {
