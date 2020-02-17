@@ -1,11 +1,6 @@
-- [x] Confirm the _name_ of the node created by the plugin
-- [x] Confirm whether I can have multiple instances of this plugin in the `gatsby-config.js` file (update README accordingly)
-    -- Found an alternative approach with queries. Using the [`gatsby-source-wikipedia`](https://github.com/gatsbyjs/gatsby/tree/817a6c14543c73ea8f56c9f93d401b03adb44e9d/packages/gatsby-source-wikipedia) plugin as guide.
-- [x] Update the `How to query` section of the README
-- [x] Determine if I can move `gatsby-node.js` into `src/` (Currently in root while using `require.resolve` approach to testing local plugin - https://www.gatsbyjs.org/docs/creating-a-local-plugin/)
-    -- This was a build issue. It was the result of the `.babel` config. Switching to `typescript` and defining a destination should help.
-
-- [x] zero-config - Successfully query the latest comic
-- [x] specific comic - Successfully query the specified comic
-- [x] specific comics - Successfully query the specified comics
-- [x] random comic(s) - Successfully query the specified _number_ of comics.
+- [ ] Simplify API to only have options (remove queries)
+- [ ] Remove query language from `fetchNodesFromQueries`
+- [ ] make sure you can still pass multiple options
+- [ ] verify the shape of the data returned
+- [ ] verify examples still work
+- [ ] Update README(s)

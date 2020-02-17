@@ -1,6 +1,6 @@
 "use-strict";
 const { createNodeData } = require("./createNodeData");
-const { fetchNodesFromQueries } = require("./fetchNodesFromQueries");
+const { fetchNodes } = require("./fetchNodes");
 
 
 exports.sourceNodes = (
@@ -10,7 +10,7 @@ exports.sourceNodes = (
   const { createNode } = actions;
 
   // Fetch a response from the apiUrl
-  return fetchNodesFromQueries(pluginOptions.queries).then(data => {
+  return fetchNodes(pluginOptions).then(data => {
     let nodeData = createNodeData(data, createNodeId, createContentDigest);
     createNode(nodeData);
   });
