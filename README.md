@@ -23,7 +23,7 @@ You have two options:
 
 The zero-config will fetch the most recent xkcd comic.
 
-```javascript title="gatsby-config.js"
+```javascript:title="gatsby-config.js"
 module.exports = {
   plugins: [
     `gatsby-source-xkcd`
@@ -36,7 +36,7 @@ module.exports = {
 
 Configuring the plugin with options can be done with any combination and order of the following options in your `gatsby-config.js`:
 
-```javascript title="gatsby-config.js"
+```javascript:title="gatsby-config.js"
 module.exports = {
   plugins: [
     {
@@ -139,7 +139,7 @@ If you want to see how your changes work with one of example apps, modify the `g
 
 For example:
 
-```diff title="./example/basic-query/gatsby-config.js
+```diff:title="./example/basic-query/gatsby-config.js
 module.exports = {
   plugins: [
     {
